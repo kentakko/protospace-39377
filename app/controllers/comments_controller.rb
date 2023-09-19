@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    if @comment.save
+    if @comment.save && @comment.content.present? # コメントが保存され、かつ内容が空でない場合
       redirect_to prototype_path(@comment.prototype)
     else
       @prototype = @comment.prototype
